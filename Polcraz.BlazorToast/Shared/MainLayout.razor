@@ -1,0 +1,32 @@
+﻿@inherits LayoutComponentBase
+
+<div class="page">
+    <Toast/>
+    
+    <div class="sidebar">
+        <NavMenu/>
+    </div>
+
+    <div class="main">
+        <div class="top-row px-4">
+            <a href="http://blazor.net" target="_blank" class="ml-md-auto">About</a>
+        </div>
+
+        <div class="content px-4">
+            @Body
+        </div>
+    </div>
+    
+    <BlazoredToasts Position="ToastPosition.BottomRight"
+                    Timeout="10"
+                    IconType="IconType.FontAwesome"
+                    InfoClass="info-toast-override"
+                    SuccessClass="success-toast-override"
+                    WarningClass="warning-toast-override"
+                    ErrorClass="error-toast-override"
+                    InfoIcon="fas fa-info"
+                    SuccessIcon="fas fa-thumbs-up"
+                    WarningIcon="fas fa-exclamation-triangle"
+                    ErrorIcon="fas fa-bug"/>
+    
+</div>

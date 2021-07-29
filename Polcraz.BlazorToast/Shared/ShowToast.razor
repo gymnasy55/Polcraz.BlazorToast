@@ -1,0 +1,42 @@
+﻿@inject IToastService ToastService;
+
+<div class="d-inline">
+    <select class="form-select"
+            @bind="@_type">
+        <option value="0" selected>Info</option>
+        <option value="1">Success</option>
+        <option value="2">Warning</option>
+        <option value="3">Error</option>
+    </select>
+    <label for="heading">Heading</label>
+        <input id="heading" 
+               type="text"
+               @bind="@_heading" />
+    <label for="message">Message</label>
+    <input id="message" 
+           type="text"
+           @bind="@_message" />
+    <button type="button"
+            class="btn btn-primary"
+            @onclick="@Show">
+        Show Toast
+    </button>
+</div>
+
+@code {
+    
+    private string _type = "0";
+    private string _message = "";
+    private string _heading = "";
+
+    private Action<string, string> GetToastAction => _type switch {
+            "0" => ToastService.ShowInfo,
+            "1" => ToastService.ShowSuccess,
+            "2" => ToastService.ShowWarning,
+            "3" => ToastService.ShowError,
+            _ => ToastService.ShowInfo
+        };
+
+    private void Show() => GetToastAction(_message, _heading);
+    
+}
